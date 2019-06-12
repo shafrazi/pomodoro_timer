@@ -12,6 +12,7 @@ class Pomodoro {
     this.started = false;
     this.setDuration = setDuration;
     this.breakTimer = new BreakTimer(breakTime, this);
+    this.terminated = false;
   }
 
   start() {
@@ -45,9 +46,15 @@ class BreakTimer {
       console.log("Break timer started!");
       setTimeout(function() {
         console.log("Break timer stopped!");
-        this.started = false;
       }, this.breakTime)
     }
+  }
+}
+
+class Timer {
+  constructor(duration, type) {
+    this.duration = duration;
+    this.type = type;
   }
 }
 
