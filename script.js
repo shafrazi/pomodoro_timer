@@ -13,23 +13,28 @@ class Pomodoro {
     this.setDuration = setDuration;
     this.breakTimer = new BreakTimer(breakTime, this);
     this.terminated = false;
+    this.timeOut;
   }
 
   start() {
     let self = this;
-    if (!this.started) {
-      this.started = true;
-      console.log("Pomodoro started");
-      setTimeout(function() {
-        console.log("Pomodoro stopped");
-        self.breakTimer.start();
-        self.started = false;
-      }, this.setDuration)
+    if (!this.terminated) {
+      if (!this.started) {
+        this.started = true;
+        console.log("Pomodoro started");
+        self.timeOut = setTimeout(function() {
+          console.log("Pomodoro stopped");
+          self.breakTimer.start();
+          self.started = false;
+        }, this.setDuration)
+      }
     }
   }
 
-  stop() {
-    this.started = false;
+  terminate() {
+    this.terminated = true;
+    clearTimeout(this.timeOut);
+    clearTimeout(this.breakTimer.timeOut);
   }
 }
 
@@ -38,16 +43,16 @@ class BreakTimer {
     this.breakTime = breakTime;
     this.started = false;
     this.pomodoro = pomodoro;
+    this.timeOut;
   }
 
   start() {
-    if (!this.started) {
-      this.started = true;
-      console.log("Break timer started!");
-      setTimeout(function() {
-        console.log("Break timer stopped!");
-      }, this.breakTime)
-    }
+    let self = this;
+    console.log("Break timer started!");
+    self.timeOut = setTimeout(function() {
+      console.log("Break timer stopped!");
+      self.pomodoro.start();
+    }, this.breakTime)
   }
 }
 
