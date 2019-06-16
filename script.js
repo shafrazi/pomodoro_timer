@@ -14,6 +14,8 @@ class Pomodoro {
     this.breakTimer = new BreakTimer(breakTime, this);
     this.terminated = false;
     this.timeOut;
+    this.timerDisplay = new Timer(setDuration, display);
+    this.breakDisplay = new Timer(breakTime, display);
   }
 
   start() {
@@ -22,9 +24,11 @@ class Pomodoro {
       if (!this.started) {
         this.started = true;
         console.log("Pomodoro started");
+        this.timerDisplay.start();
         self.timeOut = setTimeout(function() {
           console.log("Pomodoro stopped");
           self.breakTimer.start();
+          self.breakDisplay.start();
           self.started = false;
         }, this.setDuration)
       }
@@ -81,22 +85,32 @@ class Timer {
 
       if (hours < 10) {
         hours = "0" + hours;
-      } else if (minutes < 10) {
+      }
+      if (minutes < 10) {
         minutes = "0" + minutes;
-      } else if (seconds < 10) {
+      }
+      if (seconds < 10) {
         seconds = "0" + seconds;
       }
 
-      display.innerHTML = `${hours}:${minutes}:${seconds}`;
+      if (timer <= 0) {
+        self.reset();
+      }
+
+      self.display.innerHTML = `${hours}:${minutes}:${seconds}`;
     }, 1000)
   }
 
   reset() {
     clearInterval(this.clearance);
+    this.display.innerHTML = "00:00:00";
   }
 }
 
 
 let display = document.querySelector(".timer")
-let pomodoro = new Pomodoro(5000, 3000, display);
+let pomodoro = new Pomodoro(50000, 30000, display);
 pomodoro.start();
+
+// let timer = new Timer(5000, display);
+// timer.start();
