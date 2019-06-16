@@ -1,0 +1,21 @@
+body {
+  background-color: #b3c4cf;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  margin: auto;
+  margin-top: 10%;
+  width: 75%;
+  height: 40%;
+}
+
+.settings {
+  position: relative;
+  margin: auto;
+  background-color: #0b7c6e;
+  width: 60%
+}

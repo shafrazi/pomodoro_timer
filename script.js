@@ -8,7 +8,7 @@
 
 
 class Pomodoro {
-  constructor(setDuration, breakTime) {
+  constructor(setDuration, breakTime, display) {
     this.started = false;
     this.setDuration = setDuration;
     this.breakTimer = new BreakTimer(breakTime, this);
@@ -56,12 +56,47 @@ class BreakTimer {
   }
 }
 
+
+//initiate object with duration given in miliseconds
+//convert duration to hours, minutes and seconds
+//set the display accordingly.
+//start countdown
+
+
 class Timer {
-  constructor(duration, type) {
+  constructor(duration, display) {
     this.duration = duration;
-    this.type = type;
+    this.display = display;
+    this.clearance;
+  }
+
+  start() {
+    let self = this;
+    let timer = self.duration;
+    this.clearance = setInterval(function() {
+      timer = timer - 1000;
+      let hours = parseInt((timer / 1000) / 3600);
+      let minutes = parseInt(((timer / 1000) % 3600) / 60);
+      let seconds = ((timer / 1000) % 3600) % 60;
+
+      if (hours < 10) {
+        hours = "0" + hours;
+      } else if (minutes < 10) {
+        minutes = "0" + minutes;
+      } else if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
+
+      display.innerHTML = `${hours}:${minutes}:${seconds}`;
+    }, 1000)
+  }
+
+  reset() {
+    clearInterval(this.clearance);
   }
 }
 
-let pomodoro = new Pomodoro(5000, 3000);
+
+let display = document.querySelector(".timer")
+let pomodoro = new Pomodoro(5000, 3000, display);
 pomodoro.start();
