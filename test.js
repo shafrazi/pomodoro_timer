@@ -1,12 +1,3 @@
-//click play button
-//timer starts with default duration i.e 25min
-//new pomodoro object created with 25min setDuration
-
-//in the end of duration break timer should start
-//create new break object with default break time
-//in the end of break timer pomodoro timer should start again
-
-
 class Pomodoro {
   constructor(duration, display, breakTime) {
     this.duration = duration;
