@@ -16,10 +16,12 @@ class Pomodoro {
     this.paused = false;
     this.breakTimer = new BreakTimer(breakTime, display, this);
     this.pausedTime;
+    this.started = false;
   }
 
   start() {
     let self = this;
+    self.started = true;
 
     if (self.paused) {
       self.timer = self.pausedTime;
@@ -56,6 +58,7 @@ class Pomodoro {
   reset() {
     clearInterval(this.clearance);
     this.display.innerHTML = "00:00:00";
+    this.started = false;
   }
 
   pauseTimer() {
@@ -75,10 +78,12 @@ class BreakTimer {
     this.paused = false;
     this.pomodoro = pomodoro;
     this.pausedTime;
+    this.started = false;
   }
 
   start() {
     let self = this;
+    self.started = true;
 
     if (self.paused) {
       self.timer = self.pausedTime;
@@ -115,6 +120,7 @@ class BreakTimer {
   reset() {
     clearInterval(this.clearance);
     this.display.innerHTML = "00:00:00";
+    this.started = false;
   }
 
   pauseTimer() {
