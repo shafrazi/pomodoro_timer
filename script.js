@@ -50,7 +50,7 @@ class Pomodoro {
         self.reset();
         self.breakTimer.start();
       }
-      console.log(self.timer);
+      // console.log(self.timer);
       self.display.innerHTML = `${hours}:${minutes}:${seconds}`;
     }, 1000)
   }
@@ -112,7 +112,7 @@ class BreakTimer {
         self.reset();
         self.pomodoro.start();
       }
-      console.log(self.timer);
+      // console.log(self.timer);
       self.display.innerHTML = `${hours}:${minutes}:${seconds}`;
     }, 1000)
   }
