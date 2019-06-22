@@ -105,7 +105,6 @@ h1 {
   height: 50px;
   position: relative;
   text-align: center;
-
 }
 
 .timer {
@@ -115,6 +114,8 @@ h1 {
   text-align: center;
   margin: auto;
   color: white;
+  width: 40%;
+  font-weight: bolder;
 }
 
 .play-pause {

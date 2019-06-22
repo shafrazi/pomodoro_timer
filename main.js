@@ -51,6 +51,10 @@ function resetTimers() {
   sessionTimeDisplay.textContent = sessionTime / 60000;
   breakTimeDisplay.textContent = breakTime / 60000;
   playBtn.src = "play.png";
+
+  for (let i = 0; i < upDownButtons.length; i++) {
+    upDownButtons[i].classList.remove("not-allowed");
+  }
 }
 
 sessionUp.addEventListener("click", function() {
@@ -63,7 +67,7 @@ sessionUp.addEventListener("click", function() {
 
 sessionDown.addEventListener("click", function() {
   if (!pomodoro.running) {
-    if (sessionTime > 0) {
+    if (sessionTime > 60000) {
       sessionTime = sessionTime - 60000;
       sessionTimeDisplay.textContent = sessionTime / 60000;
       updateDisplayTimer();
@@ -80,7 +84,7 @@ breakUp.addEventListener("click", function() {
 
 breakDown.addEventListener("click", function() {
   if (!pomodoro.running) {
-    if (breakTime > 0) {
+    if (breakTime > 60000) {
       breakTime = breakTime - 60000;
       breakTimeDisplay.textContent = breakTime / 60000;
     };

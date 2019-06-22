@@ -51,6 +51,12 @@ class Pomodoro {
         seconds = "0" + seconds;
       }
 
+      if (self.timer < 10000) {
+        self.display.style.color = "#f40b58";
+      } else {
+        self.display.style.color = "white";
+      }
+
       if (self.timer <= 0) {
         self.reset();
         self.breakTimer.start();
@@ -65,6 +71,7 @@ class Pomodoro {
     clearInterval(this.clearance);
     this.display.innerHTML = "00:25:00";
     this.started = false;
+    this.running = false;
   }
 
   pauseTimer() {
@@ -113,6 +120,12 @@ class BreakTimer {
       }
       if (seconds < 10) {
         seconds = "0" + seconds;
+      }
+
+      if (self.timer < 10000) {
+        self.display.style.color = "#f40b58";
+      } else {
+        self.display.style.color = "white";
       }
 
       if (self.timer <= 0) {
