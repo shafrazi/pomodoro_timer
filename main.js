@@ -86,24 +86,20 @@ playBtn.addEventListener("click", function(element) {
   pomodoro.duration = sessionTime;
   pomodoro.breakTimer.duration = breakTime;
 
-  if (image.src.includes("play.png")) {
-    if (pomodoro.breakTimer.paused) {
-      pomodoro.breakTimer.start();
-    } else {
-      pomodoro.start();
-      image.src = "pause.png";
-    }
-  } else {
+  if (!pomodoro.started && !pomodoro.breakTimer.started) {
+    pomodoro.start();
+    image.src = "pause.png";
+  } else if (pomodoro.started && !pomodoro.paused) {
+    pomodoro.pauseTimer();
     image.src = "play.png";
-    if (pomodoro.breakStarted) {
-      pomodoro.breakTimer.pauseTimer();
-    } else {
-      pomodoro.pauseTimer();
-    }
+  } else if (pomodoro.paused) {
+    pomodoro.start();
+    image.src = "pause.png";
+  } else if (pomodoro.breakTimer.started && !pomodoro.breakTimer.paused) {
+    pomodoro.breakTimer.pauseTimer();
+    image.src = "play.png";
+  } else if (pomodoro.breakTimer.paused) {
+    pomodoro.breakTimer.start();
+    image.src = "pause.png";
   }
 })
-
-//change play-pause button image
-if (pomodoro.paused || pomodoro.breakTimer.paused) {
-  playBtn.src = "play.png";
-}
