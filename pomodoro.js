@@ -18,12 +18,15 @@ class Pomodoro {
     this.pausedTime;
     this.started = false;
     this.breakStarted = false;
+    this.running = false;
   }
 
   start() {
     let self = this;
+    self.running = true;
     self.started = true;
     self.breakStarted = false;
+    heading.textContent = "Session";
 
     if (self.paused) {
       self.timer = self.pausedTime;
@@ -87,6 +90,7 @@ class BreakTimer {
   start() {
     let self = this;
     self.started = true;
+    heading.textContent = "Break";
 
     if (self.paused) {
       self.timer = self.pausedTime;

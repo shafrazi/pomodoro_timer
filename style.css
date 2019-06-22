@@ -146,3 +146,7 @@ h1 {
 .btn:hover {
   cursor: pointer;
 }
+
+.not-allowed:hover {
+  cursor: not-allowed;
+}
