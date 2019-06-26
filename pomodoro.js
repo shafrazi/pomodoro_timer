@@ -72,6 +72,7 @@ class Pomodoro {
     this.display.innerHTML = "00:25:00";
     this.started = false;
     this.running = false;
+    this.paused = false;
   }
 
   pauseTimer() {
@@ -141,6 +142,7 @@ class BreakTimer {
     clearInterval(this.clearance);
     this.display.innerHTML = "00:00:00";
     this.started = false;
+    this.paused = false;
   }
 
   pauseTimer() {
