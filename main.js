@@ -44,6 +44,7 @@ function updateDisplayTimer() {
 
 function resetTimers() {
   pomodoro.reset();
+  pomodoro.breakTimer.reset();
   pomodoro.duration = sessionTime;
   pomodoro.breakTime = breakTime;
   sessionTime = 1500000;
@@ -51,6 +52,7 @@ function resetTimers() {
   sessionTimeDisplay.textContent = sessionTime / 60000;
   breakTimeDisplay.textContent = breakTime / 60000;
   playBtn.src = "play.png";
+  heading.textContent = "Session";
 
   for (let i = 0; i < upDownButtons.length; i++) {
     upDownButtons[i].classList.remove("not-allowed");
